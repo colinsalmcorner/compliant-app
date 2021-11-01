@@ -32,7 +32,7 @@ jobs:
   dev:
     name: Deploy to DEV
     needs: build
-    uses: https://github.com/colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
+    uses: colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
     with:
       artifact-name: drop
       environment-name: dev
