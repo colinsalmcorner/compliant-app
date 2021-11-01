@@ -1,7 +1,12 @@
 name: Build app
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      artifact-name:
+        description: Name of the artifact to upload
+        type: string
+        default: drop
 
 jobs:
   build:
@@ -21,21 +26,10 @@ jobs:
       if: ${{ inputs.test }}
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish -c Release -o drop
+      run: dotnet publish -c Release -o tmpdrop
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.2
       with:
-        name: drop
-        path: drop/**
+        name: ${{ inputs.artifact-name }}
+        path: tmpdrop/**
         if-no-files-found: error
-
-  dev:
-    name: Deploy to DEV
-    needs: build
-    uses: colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
-    with:
-      artifact-name: drop
-      environment-name: dev
-      environment-url: https://dev.my-super-app.net
-    secrets:
-      PASSWORD: foo
