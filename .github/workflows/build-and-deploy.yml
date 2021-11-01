@@ -1,0 +1,41 @@
+name: Build app
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.1.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      if: ${{ inputs.test }}
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish -c Release -o drop
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.2
+      with:
+        name: drop
+        path: drop/**
+        if-no-files-found: error
+
+  dev:
+    name: Deploy to DEV
+    needs: build
+    uses: https://github.com/colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
+    with:
+      artifact-name: drop
+      environment-name: dev
+      environment-url: https://dev.my-super-app.net
+    secrets:
+      PASSWORD: foo

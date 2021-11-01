@@ -1,0 +1,8 @@
+name: Scan app
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan:
+  - uses: colinsalmcorner/super-approved-workflows/.github/workflows/codeql-scan.yml@main
