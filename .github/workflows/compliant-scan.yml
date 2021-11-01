@@ -15,4 +15,4 @@ jobs:
     #  languages: '["csharp"]'
     runs-on: ubuntu-latest
     steps:
-      run: echo Code is secure
+    - run: echo Code is secure
