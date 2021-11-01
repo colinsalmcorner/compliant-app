@@ -7,3 +7,5 @@ jobs:
   scan:
     name: Code scan
     uses: colinsalmcorner/super-approved-workflows/.github/workflows/codeql-scan.yml@main
+    with:
+      languages: '["csharp"]'
