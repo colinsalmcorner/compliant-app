@@ -3,22 +3,19 @@ name: Deploy Pipeline
 on:
   workflow_dispatch:
 
-env:
-  artifact-name: drop
-
 jobs:
   build:
     name: Build
     uses: colinsalmcorner/compliant-app/.github/workflows/build.yml@main
     with:
-      artifact-name: ${{ env.artifact-name }}
+      artifact-name: drop
 
   dev:
     name: Deploy to DEV
     needs: build
     uses: colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
     with:
-      artifact-name: ${{ env.artifact-name }}
+      artifact-name: drop
       environment-name: dev
       environment-url: https://dev.my-super-app.net
     secrets:
