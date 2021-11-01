@@ -5,4 +5,5 @@ on:
 
 jobs:
   scan:
-  - uses: colinsalmcorner/super-approved-workflows/.github/workflows/codeql-scan.yml@main
+    name: Code scan
+    uses: colinsalmcorner/super-approved-workflows/.github/workflows/codeql-scan.yml@main
