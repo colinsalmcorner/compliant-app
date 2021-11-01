@@ -33,3 +33,4 @@ jobs:
         name: ${{ inputs.artifact-name }}
         path: tmpdrop/**
         if-no-files-found: error
+    - run: echo Houston, we built the app.
