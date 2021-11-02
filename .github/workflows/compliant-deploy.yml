@@ -19,7 +19,7 @@ jobs:
       environment-name: dev
       environment-url: https://dev.my-super-app.net
     secrets:
-      PASSWORD: ${{ secrets.DEV-PASSWORD }}
+      PASSWORD: ${{ secrets.DEV_PASSWORD }}
   
   prod:
     name: Deploy to PROD
@@ -30,4 +30,4 @@ jobs:
       environment-name: prod
       environment-url: https://my-super-app.net
     secrets:
-      PASSWORD: ${{ secrets.PROD-PASSWORD }}
+      PASSWORD: ${{ secrets.PROD_PASSWORD }}
