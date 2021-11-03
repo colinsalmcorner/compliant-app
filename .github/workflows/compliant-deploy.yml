@@ -19,4 +19,15 @@ jobs:
       environment-name: dev
       environment-url: https://dev.my-super-app.net
     secrets:
-      PASSWORD: foo
+      PASSWORD: ${{ secrets.DEV_PASSWORD }}
+  
+  prod:
+    name: Deploy to PROD
+    needs: dev
+    uses: colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
+    with:
+      artifact-name: drop
+      environment-name: prod
+      environment-url: https://my-super-app.net
+    secrets:
+      PASSWORD: ${{ secrets.PROD_PASSWORD }}
