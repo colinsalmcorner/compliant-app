@@ -23,7 +23,7 @@ jobs:
   
   prod:
     name: Deploy to PROD
-    needs: build
+    needs: dev
     uses: colinsalmcorner/super-approved-workflows/.github/workflows/deploy-app.yml@main
     with:
       artifact-name: drop
