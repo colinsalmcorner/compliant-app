@@ -1,2 +1,5 @@
 # Changes to `compliant-` workflows requires @compliance-team approval
 /.github/workflows/compliant-* @colinsalmcorner/compliance-team @faux-colin
+
+# Changes to `CODEOWNERS` requires @compliance-team approval
+/.github/CODEOWNERS
